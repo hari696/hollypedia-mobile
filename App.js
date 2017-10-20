@@ -11,6 +11,9 @@ export default class App extends Component<{}> {
         <Text style={styles.instructions}>
           Enjoy and Grow your HollyWood knowledge
         </Text>
+        <Text style={styles.instructions}>
+          All Popular and Other List of movies are avaliable on Door Step.
+        </Text>
       </View>
     );
   }
