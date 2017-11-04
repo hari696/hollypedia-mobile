@@ -1,2 +1,3 @@
-# hollypedia_mobile
-Mobile Info App - React Native
+# Hollypedia Mobile - React Native App for Movies Info.
+
+# Overview.

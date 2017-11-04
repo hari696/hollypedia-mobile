@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from '../assets/images/logo.jpg';
 import { Platform, StyleSheet ,View, Text, Image } from 'react-native';
 import SearchMovie from './search_movie';
 
@@ -30,13 +31,10 @@ const styles = StyleSheet.create({
 
 export default class Home extends Component<{}> {
   render() {
-    let pic = {
-      uri: 'https://raw.githubusercontent.com/hari696/hollypedia/master/src/assets/images/logo.jpg'
-    };
     return (
       <View style={styles.container}>
         <View style={styles.logo}>
-          <Image source={pic} style={{width: 200, height: 185}} />
+          <Image source={logo} style={{width: 200, height: 185}} />
           <Text style={styles.welcome}>HollyPedia</Text>
           <Text style={styles.instructions}>
             Enjoy and Grow your HollyWood knowledge
