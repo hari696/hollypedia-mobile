@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, View, TextInput, Text } from 'react-native';
+import { Platform, StyleSheet, View, TextInput, Text, ScrollView } from 'react-native';
 
 const styles = StyleSheet.create({
   search: {
@@ -7,6 +7,12 @@ const styles = StyleSheet.create({
     marginLeft: 50,
     marginRight: 50,
     textAlign: 'center'
+  },
+  scrollBar: {
+    marginTop: 5,
+    height: 150,
+    marginLeft: 5,
+    marginRight: 5
   }
 });
 
@@ -15,10 +21,11 @@ export default class SearchMovie extends Component<{}> {
     super(props);
     this.state = {
       searchMoive: "",
-      resultMovies: ""
+      resultMovies: []
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.ApiCall = this.ApiCall.bind(this);
+    this.DisplayMoives = this.DisplayMoives.bind(this);
   }
 
   handleInputChange(movie){
@@ -26,15 +33,32 @@ export default class SearchMovie extends Component<{}> {
   }
 
   ApiCall(){
-    var text = "Naspter Da! - " + this.state.searchMoive
-    this.setState({resultMovies: text})
+    fetch('https://api.themoviedb.org/3/search/movie?api_key=d272326e467344029e68e3c4ff0b4059&language=en-US&query='+this.state.searchMoive).then(response => {
+      const data = response.json();
+      return Promise.all([data]);
+    })
+    .then((res) => {
+      this.setState({resultMovies: res[0].results})
+    })
   }
+
+  DisplayMoives(){
+    movieLists = (this.state.resultMovies).map((movie) =>
+      <Text key={movie.id} >{movie.title}</Text>
+    );
+    return (movieLists);
+  }
+
 
   render() {
     return (
       <View>
-        <TextInput name="searchMoive" placeholder="Movie"  style={styles.search} onChangeText={this.handleInputChange} onSubmitEditing={this.ApiCall}/>
-        <Text>{this.state.resultMovies}</Text>
+        <View>
+          <TextInput name="searchMoive" placeholder="Movie"  style={styles.search} onChangeText={this.handleInputChange} onSubmitEditing={this.ApiCall}/>
+        </View>
+        <View style={styles.scrollBar}>
+          <ScrollView>{this.DisplayMoives()}</ScrollView>
+        </View>
       </View>
     );
   }

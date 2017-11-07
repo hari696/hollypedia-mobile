@@ -33,16 +33,16 @@ export default class Home extends Component<{}> {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.logo}>
-          <Image source={logo} style={{width: 200, height: 185}} />
-          <Text style={styles.welcome}>HollyPedia</Text>
-          <Text style={styles.instructions}>
-            Enjoy and Grow your HollyWood knowledge
-          </Text>
-        </View>
-        <View>
-          <SearchMovie />
-        </View>
+          <View style={styles.logo}>
+            <Image source={logo} style={{width: 200, height: 185}} />
+            <Text style={styles.welcome}>HollyPedia</Text>
+            <Text style={styles.instructions}>
+              Enjoy and Grow your HollyWood knowledge
+            </Text>
+          </View>
+            <View>
+              <SearchMovie />
+            </View>
       </View>
     );
   }
